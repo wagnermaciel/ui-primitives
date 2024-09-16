@@ -1,0 +1,23 @@
+td {
+  width: 6rem;
+  height: 6rem;
+  border: 1px solid black;
+  text-align: center; 
+  vertical-align: middle;
+
+  &[tabindex="0"]:focus {
+    outline: -webkit-focus-ring-color auto 1px;
+    background-color: aliceblue;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    max-width: 5rem;
+    border: none;
+  }
+
+  input[type="text"] {
+    outline: 1px solid grey;
+  }
+}

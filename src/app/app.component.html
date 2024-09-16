@@ -32,3 +32,59 @@
 <hr>
 
 <p>Item Id: {{menu.uiState.activeDescendantId()}}</p>
+
+<h2>Basic Grid</h2>
+
+<table uiGrid>
+  <tbody>
+    <tr uiGridRow>
+      <td uiGridCell></td>
+      <td uiGridCell></td>
+      <td uiGridCell></td>
+    </tr>
+    <tr uiGridRow>
+      <td uiGridCell></td>
+      <td uiGridCell></td>
+      <td uiGridCell></td>
+    </tr>
+    <tr uiGridRow>
+      <td uiGridCell></td>
+      <td uiGridCell></td>
+      <td uiGridCell></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Grid with Widgets</h2>
+
+<table uiGrid>
+  <tbody>
+    <tr uiGridRow>
+      <td uiGridCell>
+        <input type="checkbox" uiGridWidget />
+      </td>
+      <td uiGridCell>
+        <input type="range" [usesArrowKeys]="true" uiGridWidget />
+      </td>
+      <td uiGridCell>
+        <input type="text" [editable]="true" uiGridWidget />
+      </td>
+    </tr>
+    <tr uiGridRow>
+      <td uiGridCell>
+        <input type="radio" name="1" uiGridWidget>
+        <input type="radio" name="1" uiGridWidget>
+        <input type="radio" name="1" uiGridWidget>
+        <input type="radio" name="1" uiGridWidget>
+        <input type="radio" name="1" uiGridWidget>
+        <input type="radio" name="1" uiGridWidget>
+      </td>
+      <td uiGridCell>
+        <input type="color" [usesArrowKeys]="true" uiGridWidget>
+      </td>
+      <td uiGridCell>
+        <a href="/" uiGridWidget>Click me!</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
