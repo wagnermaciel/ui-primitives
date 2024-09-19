@@ -1,5 +1,19 @@
-<ul uiListbox>
+<div>
+  <label for="roving tabindex checkbox">Roving tabindex:</label>
+  <input type="checkbox" id="roving tabindex checkbox" [(ngModel)]="rovingFocus" />
+</div>
+
+<div>
+  <label for="selection follows focus checkbox">Selection follows focus:</label>
+  <input type="checkbox" id="selection follows focus checkbox" [(ngModel)]="followFocus" />
+</div>
+
+<ul [rovingFocus]="rovingFocus" [followFocus]="followFocus" #listbox="uiListbox"  uiListbox>
+  <li uiListboxOption>Option 0</li>
   <li uiListboxOption>Option 1</li>
   <li uiListboxOption>Option 2</li>
-  <li uiListboxOption>Option 3</li>
 </ul>
+
+<p>Active Descendant: {{listbox.uiState.activeId() || 'None'}}</p>
+<p>Active Index: {{listbox.uiState.state().activeIndex ?? 'None'}}</p>
+<p>Selected Index: {{listbox.uiState.state().selectedIndex ?? 'None'}}</p>

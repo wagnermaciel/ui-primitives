@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { uiListbox, uiListboxOption } from '../primitives/listbox/listbox';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [uiListbox, uiListboxOption],
+  imports: [uiListbox, uiListboxOption, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'ui-primitives-no-signals-no-di';
+  rovingFocus = true;
+  followFocus = true;
 }

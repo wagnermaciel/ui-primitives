@@ -1,13 +1,15 @@
-import { Signal, WritableSignal } from "@angular/core";
+import { Signal } from "@angular/core";
 
 interface ListLike<T> {
   wrap: Signal<boolean>;
   options: Signal<T[]>;
-  state: WritableSignal<{ activeIndex?: number }>;
 }
 
-export function getPrevOption<T>(list: ListLike<T>): T {
-  const state = list.state();
+interface ListState {
+  activeIndex?: number;
+}
+
+export function getPrevOption<T>(list: ListLike<T>, state: ListState): T {
   const options = list.options();
 
   if (state.activeIndex === undefined) {
@@ -26,8 +28,7 @@ export function getPrevOption<T>(list: ListLike<T>): T {
   return options[index];
 }
 
-export function getNextOption<T>(list: ListLike<T>): T {
-  const state = list.state();
+export function getNextOption<T>(list: ListLike<T>, state: ListState): T {
   const options = list.options();
 
   if (state.activeIndex === undefined) {

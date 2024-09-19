@@ -4,7 +4,7 @@ import { onKeyDown } from "./key-handlers";
 export function updateState(listbox: Listbox, newState: ListboxState) {
   const oldState = listbox.state();
 
-  if (oldState.activeOption !== newState.activeOption) {
+  if (oldState.activeOption !== newState.activeOption && listbox.rovingFocus()) {
     newState.activeOption?.focus();
   }
 

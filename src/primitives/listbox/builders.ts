@@ -16,7 +16,7 @@ export function createListbox(
   const rovingFocus = opts?.rovingFocus || signal(true);
   const followFocus = opts?.followFocus || signal(true);
   const state = createListboxState(rovingFocus());
-  const activeId = computed(() => state().activeOption?.id());
+  const activeId = computed(() => rovingFocus() ? undefined : state().activeOption?.id());
   const tabindex = computed(() => rovingFocus() ? -1 : 0);
   return {
     wrap,
@@ -41,19 +41,32 @@ export function createListboxOption(
   const option: Partial<ListboxOption> = { focus, disabled };
   option.id = signal(`${counter++}`);
   option.index = computed(() => listbox.options().indexOf(option as ListboxOption)!);
-  option.active = computed(() => listbox.state().activeIndex === option.index!());
-  option.selected = computed(() => listbox.state().selectedIndex === option.index!());
+
+  option.active = computed(() => {
+    const index = option.index!();
+    const activeIndex = listbox.state().activeIndex;
+    const rovingFocus = listbox.rovingFocus();
+
+    return activeIndex === undefined && rovingFocus
+      ? index === 0
+      : index === activeIndex;
+  });
+
+  option.selected = computed(() => {
+    const index = option.index!();
+    const rovingFocus = listbox.rovingFocus();
+    const followFocus = listbox.followFocus();
+    const selectedIndex = listbox.state().selectedIndex;
+    
+    return selectedIndex === undefined && rovingFocus && followFocus
+      ? index === 0
+      : index === selectedIndex;
+  });
+
   option.tabindex = ListOption.tabindex(listbox.rovingFocus, option.active);
   return option as ListboxOption;
 }
 
 function createListboxState(rovingFocus: boolean): WritableSignal<ListboxState> {
-  if (rovingFocus) {
-    return signal({
-      activeIndex: 0,
-      selectedIndex: 0,
-    });
-  }
-
   return signal({});
 }

@@ -1,11 +1,11 @@
-import { computed, contentChildren, Directive, ElementRef, inject, signal } from '@angular/core';
+import { computed, contentChildren, Directive, ElementRef, inject, input } from '@angular/core';
 import { createListbox, createListboxOption } from './builders';
 import { handleKeyDown } from './setters';
 
 @Directive({
   selector: '[uiListbox]',
   standalone: true,
-  exportAs: 'Listbox',
+  exportAs: 'uiListbox',
   host: {
     role: 'listbox',
     '(keydown)': 'onKeyDown($event)',
@@ -16,7 +16,8 @@ import { handleKeyDown } from './setters';
 export class uiListbox {
   uiListboxOptions = contentChildren(uiListboxOption);
   options = computed(() => this.uiListboxOptions().map((option) => option.uiState));
-  rovingFocus = signal(false);
+  rovingFocus = input(false);
+  followFocus = input(false);
   uiState = createListbox(this.options, this);
 
   onKeyDown(event: KeyboardEvent) {
@@ -27,7 +28,7 @@ export class uiListbox {
 @Directive({
   selector: '[uiListboxOption]',
   standalone: true,
-  exportAs: 'ListboxOption',
+  exportAs: 'uiListboxOption',
   host: {
     role: 'option',
     '[attr.id]': 'uiState.id()',
