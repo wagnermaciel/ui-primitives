@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { uiListbox, uiListboxOption } from '../primitives/listbox/listbox';
+import { ListboxDemo } from './listbox-demo/listbox-demo';
+
+let nextId = 0;
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [uiListbox, uiListboxOption, FormsModule],
+  imports: [ListboxDemo],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
