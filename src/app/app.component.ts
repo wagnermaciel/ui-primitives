@@ -11,5 +11,6 @@ let nextId = 0;
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'ui-primitives-no-signals-no-di';
+  rovingFocus = true;
+  followFocus = true;
 }
